@@ -1,0 +1,69 @@
+{
+  "name": "trubudget-blockchain",
+  "version": "1.29.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openkfw/TruBudget"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Jure Zakotnik <Jure.Zakotnik@kfw.de>",
+  "contributors": [
+    "Stefan Ziffer <stefan.ziffer@accenture.com>",
+    "Mathias Höld <mathias.hoeld@accenture.com>",
+    "Kevin Bader <kevin.bader@accenture.com>",
+    "Sascha Kerbler <sascha.kerbler@accenture.com>",
+    "Roman Schiefer <roman.schiefer@accenture.com>",
+    "Philip Pai <philip.pai@accenture.com>"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "audit": "better-npm-audit audit",
+    "test": "nyc --all --reporter=lcov --reporter=text mocha \"src/**/*.spec.js\"",
+    "watch": "nodemon src",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "check-backup": "node check-backup.js",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/**/*.spec.js"
+    ]
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "0.10.2",
+    "async-each": "^1.0.1",
+    "axios": "^0.21.4",
+    "better-npm-audit": "^3.4.0",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "express": "^4.16.3",
+    "js-yaml": "^3.13.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5-file": "^4.0.0",
+    "sha256-file": "^1.0.0",
+    "shelljs": "^0.8.4",
+    "sinon": "^7.2.2",
+    "streamifier": "^0.1.1",
+    "tar-fs": "^2.1.0",
+    "trubudget-logging-service": "^1.1.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "coveralls": "^3.0.3",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "jshint": "^2.9.7",
+    "mocha": "^9.1.3",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "prettier": "1.19.1"
+  }
+}
