@@ -64,7 +64,6 @@ typings/
 # dotenv environment variables file
 .env
 
-
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -73,11 +72,4 @@ typings/
 !.vscode/extensions.json
 .history
 
-
-# End of https://www.gitignore.io/api/node,visualstudiocode
->>>>>>> Iterate on the Authz PoC
-
-
-# k6 load tests
-
-loadtest/k6
+.DS_Store

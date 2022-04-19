@@ -56,11 +56,9 @@ app.get("/info", async (_req: express.Request, res: express.Response) => {
     .getInformation(rpcClient)
     .then((result: MultichainInformation) => {
       res.status(200).send(result);
-      // .send(" 2 OKayyyy lets get the infos: " + JSON.stringify(result));
     })
     .catch((err) => {
       const { code, body } = toHttpError(err);
-      // console.log("ERROR CAUGHT: " + code + " -- " + body);
       res.status(code).send(body);
     });
 });
