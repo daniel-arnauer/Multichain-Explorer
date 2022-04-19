@@ -1,5 +1,7 @@
 # Multichain explorer with ExpressJS and NextJS.
 
+This is an application with frontend and backend to view the data that is stored in the [Multichain platform](https://www.multichain.com/).
+
 ## Getting started
 
 To run a demo version of this project, you need to run the Multichain, API and UI:
