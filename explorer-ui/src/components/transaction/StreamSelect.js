@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Divider } from "@mui/material";
 import axios from "axios";
-import { SeverityPill } from "./SeverityPill";
+import { SelectionPill } from "./SelectionPill";
 import config from "../../config";
 
 export const StreamSelect = (props) => {
@@ -55,7 +55,7 @@ export const StreamSelect = (props) => {
       <Box sx={{ margin: "10px" }}>
         {streams?.map((s) => {
           return (
-            <SeverityPill
+            <SelectionPill
               key={s.name}
               name={s.name}
               isSelected={selectedStream === s.name}
@@ -63,7 +63,7 @@ export const StreamSelect = (props) => {
               sx={{ margin: "5px" }}
             >
               {s.name}
-            </SeverityPill>
+            </SelectionPill>
           );
         })}
       </Box>

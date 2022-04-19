@@ -12,7 +12,6 @@ import { JsonView } from "./JsonView";
 import axios from "axios";
 import config from "../../config";
 
-// user vs expert View
 export const DataTable = (props) => {
   const { selectedStream = "" } = props;
   const [page, setPage] = React.useState(0);
@@ -26,10 +25,6 @@ export const DataTable = (props) => {
 
   React.useEffect(() => {
     console.log(streamItems);
-    false &&
-      streamItems.map((s) => {
-        console.log(s);
-      });
   }, [streamItems]);
 
   async function fetchStreamItems() {
@@ -49,7 +44,7 @@ export const DataTable = (props) => {
       });
   }
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (_event, newPage) => {
     setPage(newPage);
   };
 

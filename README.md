@@ -8,9 +8,9 @@ To run a demo version of this project, you need to run the Multichain, API and U
 
 To start the multichain with mocked data in Docker, run `bash start-trubudget-multichain.sh`
 
-To start the API, run `cd blockchain-explorer` and `npm run dev`
+To start the API in development mode, run `cd blockchain-explorer` and `npm run dev`
 
-To start the API, run `cd explorer-ui` and `npm run dev`
+To start the UI in development mode, run `cd explorer-ui` and `npm run dev`
 
 ## Features
 

@@ -1,8 +1,7 @@
-import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 
-const SeverityPillRoot = styled("span")(
+const SelectionPillRoot = styled("span")(
   ({ theme, ownerState, isSelected = false, sx }) => {
     const backgroundColor = isSelected
       ? theme.palette.primary.main
@@ -34,7 +33,7 @@ const SeverityPillRoot = styled("span")(
   }
 );
 
-export const SeverityPill = (props) => {
+export const SelectionPill = (props) => {
   const {
     color = "primary",
     children,
@@ -47,7 +46,7 @@ export const SeverityPill = (props) => {
   const ownerState = { color };
 
   return (
-    <SeverityPillRoot
+    <SelectionPillRoot
       ownerState={ownerState}
       isSelected={isSelected}
       {...other}
@@ -55,6 +54,6 @@ export const SeverityPill = (props) => {
       <Box onClick={() => setSelected(name)} sx={{ cursor: "pointer" }}>
         {children}
       </Box>
-    </SeverityPillRoot>
+    </SelectionPillRoot>
   );
 };
