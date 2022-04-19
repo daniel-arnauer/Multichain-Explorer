@@ -3,9 +3,6 @@ import { Box, Container, Grid } from "@mui/material";
 import * as React from "react";
 import { DashboardLayout } from "../components/dashboard-layout";
 import { DataTable } from "../components/transaction/DataTable";
-import { DataTree } from "../components/transaction/DataTree";
-import { JsonTree } from "../components/transaction/JsonTree";
-import { ListView } from "../components/transaction/ListView";
 import { StreamSelect } from "../components/transaction/StreamSelect";
 
 const TableView = () => {
