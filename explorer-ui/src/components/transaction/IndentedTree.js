@@ -4,15 +4,24 @@ import axios from "axios";
 import * as d3 from "d3";
 import config from "../../config";
 
-let graph = <div>raw_graph</div>;
-
 export const IndentedTree = (props) => {
   const [data, setData] = React.useState({});
-  const containerRef = React.useRef(null);
+  const svgRef = React.useRef(null);
 
   React.useEffect(() => {
     fetchBlockchain();
   }, []);
+
+  React.useEffect(() => {
+    // ref is necessary for correct rendering
+    // https://stackoverflow.com/questions/70064828/d3-js-svg-object-not-showing-every-time-i-run-react-project
+    if (!svgRef.current) {
+      return;
+    }
+    if (data) {
+      createChart();
+    }
+  }, [svgRef.current, data]);
 
   async function fetchBlockchain() {
     let multichain = { name: "Multichain", children: [] };
@@ -52,7 +61,6 @@ export const IndentedTree = (props) => {
         });
     }
     setData(multichain);
-    createChart();
   }
 
   const createChart = () => {
@@ -64,10 +72,11 @@ export const IndentedTree = (props) => {
     const nodes = root.descendants();
 
     const width = 400;
-
+    if (!svgRef.current) {
+      return;
+    }
     const svg = d3
-      .select("#my-svg")
-      //   .create("svg")
+      .select(svgRef.current)
       .attr("viewBox", [
         -nodeSize / 2,
         (-nodeSize * 3) / 2,
@@ -121,16 +130,13 @@ export const IndentedTree = (props) => {
         .join("/")
     );
 
-    graph = svg.node();
-    console.log("GRAPH: ");
-    console.log(graph);
-    // setGraph2(graph);
+    svg.node();
   };
 
   return (
     <Paper sx={{ width: "100%", height: "100%", overflow: "auto" }}>
       <div> Hi here is the D3 graph</div>
-      <svg id="my-svg"></svg>
+      <svg id="my-svg" ref={svgRef}></svg>
     </Paper>
   );
 };
