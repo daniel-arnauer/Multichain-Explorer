@@ -16,11 +16,16 @@ To start the UI in development mode, run `cd explorer-ui` and `npm run dev`
 
 The Blockchain Explorer allows you to view the Multichain data in three different modes:
 
+- Tree View
 - List View
 - Table View
 - JSON View
 
 ### Screenshots
+
+#### Tree view
+
+![Tree view](./TreeView.png)
 
 #### List view
 
