@@ -2,6 +2,7 @@ import * as React from "react";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import * as d3 from "d3";
+import { Divider, Typography } from "@mui/material";
 import config from "../../config";
 
 export const IndentedTree = (props) => {
@@ -64,6 +65,7 @@ export const IndentedTree = (props) => {
   }
 
   const createChart = () => {
+    // Source: https://observablehq.com/@d3/indented-tree
     let i = 0;
     const nodeSize = 17;
     const root = d3.hierarchy(data).eachBefore((d) => (d.index = i++));
@@ -120,13 +122,28 @@ export const IndentedTree = (props) => {
       .append("text")
       .attr("dy", "0.32em")
       .attr("x", (d) => d.depth * nodeSize + 6)
-      .text((d) => d.data.name);
+      .text((d) => {
+        console.log(d.data);
+        if (d.data?.name) {
+          // name within transaction object
+          return d.data.name;
+        } else if (d.data?.data?.json?.type) {
+          // trubudget event type if available
+          return d.data.data.json.type;
+        } else if (d.data?.txid) {
+          // transaction id
+          return d.data.txid;
+        } else {
+          // default
+          return "";
+        }
+      });
 
     node.append("title").text((d) =>
       d
         .ancestors()
         .reverse()
-        .map((d) => d.data.name)
+        .map((d) => "d.data.txid")
         .join("/")
     );
 
@@ -135,7 +152,13 @@ export const IndentedTree = (props) => {
 
   return (
     <Paper sx={{ width: "100%", height: "100%", overflow: "auto" }}>
-      <div> Hi here is the D3 graph</div>
+      <Typography variant="h6" sx={{ margin: "20px" }}>
+        Intended Tree
+      </Typography>
+      <Typography variant="body2" sx={{ margin: "20px" }}>
+        This intended tree represents all data in the multichain.
+      </Typography>
+      <Divider />
       <svg id="my-svg" ref={svgRef}></svg>
     </Paper>
   );
