@@ -2,11 +2,12 @@ import * as React from "react";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import * as d3 from "d3";
-import { Divider, Typography } from "@mui/material";
+import { Divider, Typography, Button } from "@mui/material";
 import config from "../../config";
 
 export const IndentedTree = (props) => {
   const [data, setData] = React.useState({});
+  const [width, setWidth] = React.useState(800);
   const svgRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -23,6 +24,11 @@ export const IndentedTree = (props) => {
       createChart();
     }
   }, [svgRef.current, data]);
+
+  React.useEffect(() => {
+    // on Zoom in or out
+    createChart();
+  }, [width]);
 
   async function fetchBlockchain() {
     let multichain = { name: "Multichain", children: [] };
@@ -73,7 +79,6 @@ export const IndentedTree = (props) => {
 
     const nodes = root.descendants();
 
-    const width = 400;
     if (!svgRef.current) {
       return;
     }
@@ -150,6 +155,13 @@ export const IndentedTree = (props) => {
     svg.node();
   };
 
+  const zoomOut = () => {
+    setWidth(width + 200);
+  };
+  const zoomIn = () => {
+    setWidth(width - 200);
+  };
+
   return (
     <Paper sx={{ width: "100%", height: "100%", overflow: "auto" }}>
       <Typography variant="h6" sx={{ margin: "20px" }}>
@@ -158,6 +170,30 @@ export const IndentedTree = (props) => {
       <Typography variant="body2" sx={{ margin: "20px" }}>
         This intended tree represents all data in the multichain.
       </Typography>
+      <Button
+        size="small"
+        variant="outlined"
+        sx={{ margin: "10px" }}
+        onClick={() => zoomOut()}
+      >
+        Zoom out
+      </Button>
+      <Button
+        size="small"
+        variant="outlined"
+        sx={{ margin: "10px" }}
+        onClick={() => zoomIn()}
+      >
+        Zoom in
+      </Button>
+      <Button
+        size="small"
+        variant="outlined"
+        sx={{ margin: "10px" }}
+        onClick={() => setWidth(800)}
+      >
+        Reset Zoom
+      </Button>
       <Divider />
       <svg id="my-svg" ref={svgRef}></svg>
     </Paper>
