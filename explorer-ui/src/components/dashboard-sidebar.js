@@ -32,6 +32,11 @@ const items = [
     icon: <DashboardIcon fontSize="small" />,
     title: "Table view",
   },
+  {
+    href: "/Graph",
+    icon: <DashboardIcon fontSize="small" />,
+    title: "Graph view",
+  },
 ];
 
 export const DashboardSidebar = (props) => {
